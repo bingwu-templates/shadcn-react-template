@@ -51,8 +51,8 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>
 const defaultValues: Partial<ProfileFormValues> = {
   bio: 'I own a computer.',
   urls: [
-    { value: 'https://shadcn.com' },
-    { value: 'http://twitter.com/shadcn' },
+    { value: 'https://example.com' },
+    { value: 'https://example.com/profile' },
   ],
 }
 
@@ -81,7 +81,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='shadcn' {...field} />
+                <Input placeholder='username' {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
@@ -104,9 +104,15 @@ export function ProfileForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value='m@example.com'>m@example.com</SelectItem>
-                  <SelectItem value='m@google.com'>m@google.com</SelectItem>
-                  <SelectItem value='m@support.com'>m@support.com</SelectItem>
+                  <SelectItem value='user@example.com'>
+                    user@example.com
+                  </SelectItem>
+                  <SelectItem value='work@example.com'>
+                    work@example.com
+                  </SelectItem>
+                  <SelectItem value='support@example.com'>
+                    support@example.com
+                  </SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>

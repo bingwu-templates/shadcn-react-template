@@ -1,119 +1,61 @@
-# Shadcn Admin Dashboard
+# Admin Workspace
 
-Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
+基于 React、TypeScript、Vite、Tailwind CSS 和 shadcn/ui 的后台开发骨架。
 
-![alt text](public/images/shadcn-admin.png)
+## 本地开发
 
-[![Sponsored by Clerk](https://img.shields.io/badge/Sponsored%20by-Clerk-5b6ee1?logo=clerk)](https://go.clerk.com/GttUAaK)
-
-I've been creating dashboard UIs at work and for my personal projects. I always wanted to make a reusable collection of dashboard UI for future projects; and here it is now. While I've created a few custom components, some of the code is directly adapted from ShadcnUI examples.
-
-> This is not a starter project (template) though. I'll probably make one in the future.
-
-## Features
-
-- Light/dark mode
-- Responsive
-- Accessible
-- With built-in Sidebar component
-- Global search command
-- 10+ pages
-- Extra custom components
-- RTL support
-
-<details>
-<summary>Customized Components (click to expand)</summary>
-
-This project uses Shadcn UI components, but some have been slightly modified for better RTL (Right-to-Left) support and other improvements. These customized components differ from the original Shadcn UI versions.
-
-If you want to update components using the Shadcn CLI (e.g., `npx shadcn@latest add <component>`), it's generally safe for non-customized components. For the listed customized ones, you may need to manually merge changes to preserve the project's modifications and avoid overwriting RTL support or other updates.
-
-> If you don't require RTL support, you can safely update the 'RTL Updated Components' via the Shadcn CLI, as these changes are primarily for RTL compatibility. The 'Modified Components' may have other customizations to consider.
-
-### Modified Components
-
-- scroll-area
-- sonner
-- separator
-
-### RTL Updated Components
-
-- alert-dialog
-- calendar
-- command
-- dialog
-- dropdown-menu
-- select
-- table
-- sheet
-- sidebar
-- switch
-
-**Notes:**
-
-- **Modified Components**: These have general updates, potentially including RTL adjustments.
-- **RTL Updated Components**: These have specific changes for RTL language support (e.g., layout, positioning).
-- For implementation details, check the source files in `src/components/ui/`.
-- All other Shadcn UI components in the project are standard and can be safely updated via the CLI.
-
-</details>
-
-## Tech Stack
-
-**UI:** [ShadcnUI](https://ui.shadcn.com) (TailwindCSS + RadixUI)
-
-**Build Tool:** [Vite](https://vitejs.dev/)
-
-**Routing:** [TanStack Router](https://tanstack.com/router/latest)
-
-**Type Checking:** [TypeScript](https://www.typescriptlang.org/)
-
-**Linting/Formatting:** [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/)
-
-**Icons:** [Lucide Icons](https://lucide.dev/icons/), [Tabler Icons](https://tabler.io/icons) (Brand icons only)
-
-**Auth (partial):** [Clerk](https://go.clerk.com/GttUAaK)
-
-## Run Locally
-
-Clone the project
+使用 Node.js 22.12+（推荐 Node.js 24）和 pnpm 10。
 
 ```bash
-  git clone https://github.com/satnaing/shadcn-admin.git
+pnpm install
+pnpm dev
 ```
 
-Go to the project directory
+无需配置环境变量。文件路由由 TanStack Router 在开发和构建时自动生成，勿手动编辑 `src/routeTree.gen.ts`。
+
+## 保留功能
+
+- 仪表盘与图表、任务表格、用户管理。
+- 资料、账户、外观、通知和显示设置，以及帮助中心占位页。
+- 登录、注册、找回密码、OTP 和错误页面。
+- 响应式侧栏、公共顶栏、浅色/深色/跟随系统主题。
+- React Query 与 axios 请求基础，Zustand 状态管理。
+
+页面继续使用模拟数据；表单、增删改和认证操作保留演示行为。登录会在本地写入模拟令牌，后台路由当前没有认证守卫。实际业务使用前需接入后端与认证校验。
+
+已移除聊天、应用集成、Clerk、双栏登录页，以及全局命令搜索、RTL、字体切换和布局配置面板。
+
+## 项目结构
+
+| 目录                    | 用途                          |
+| ----------------------- | ----------------------------- |
+| `src/routes`            | 文件路由与路由参数校验        |
+| `src/features`          | 页面、业务组件及模拟数据      |
+| `src/components/layout` | 公共布局与侧栏导航            |
+| `src/components/ui`     | 当前页面使用的 shadcn/ui 组件 |
+| `src/context`           | 主题状态                      |
+| `src/stores`            | 本地模拟认证状态              |
+| `src/lib`、`src/hooks`  | 公共工具与 hooks              |
+| `src/test-utils`        | 浏览器测试辅助工具            |
+
+导航配置位于 `src/components/layout/data/sidebar-data.ts`。新增组件和依赖按业务需要引入。
+
+## 检查与构建
 
 ```bash
-  cd shadcn-admin
+pnpm lint
+pnpm format:check
+pnpm knip
+pnpm test:browser:install # 首次运行测试时安装 Chromium
+pnpm test
+pnpm build
+pnpm preview
 ```
 
-Install dependencies
+测试使用 Vitest 浏览器模式和 Playwright Chromium；`pnpm test:watch` 用于监听测试，`pnpm test:coverage` 生成覆盖率报告。`pnpm format` 自动格式化代码。
 
-```bash
-  pnpm install
-```
+CI 执行代码检查、格式检查、未使用代码检查、浏览器测试和构建。
 
-Start the server
+## 许可
 
-```bash
-  pnpm run dev
-```
-
-## Sponsoring this project ❤️
-
-If you find this project helpful or use this in your own work, consider [sponsoring me](https://github.com/sponsors/satnaing) to support development and maintenance. You can [buy me a coffee](https://buymeacoffee.com/satnaing) as well. Don’t worry, every penny helps. Thank you! 🙏
-
-For questions or sponsorship inquiries, feel free to reach out at [satnaingdev@gmail.com](mailto:satnaingdev@gmail.com).
-
-### Current Sponsor
-
-- [Clerk](https://go.clerk.com/GttUAaK) - authentication and user management for the modern web
-
-## Author
-
-Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
-
-## License
-
-Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
+基于 [shadcn-admin](https://github.com/satnaing/shadcn-admin) 改造。保留原作者版权声明，使用 [MIT License](LICENSE)。
