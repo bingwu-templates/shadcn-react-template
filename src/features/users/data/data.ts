@@ -1,6 +1,13 @@
 import { Shield, UserCheck, Users, CreditCard } from 'lucide-react'
 import { type UserStatus } from './schema'
 
+export const statusLabels: Record<UserStatus, string> = {
+  active: '已启用',
+  inactive: '已停用',
+  invited: '已邀请',
+  suspended: '已封禁',
+}
+
 export const callTypes = new Map<UserStatus, string>([
   ['active', 'bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200'],
   ['inactive', 'bg-neutral-300/40 border-neutral-300'],
@@ -13,22 +20,22 @@ export const callTypes = new Map<UserStatus, string>([
 
 export const roles = [
   {
-    label: 'Superadmin',
+    label: '超级管理员',
     value: 'superadmin',
     icon: Shield,
   },
   {
-    label: 'Admin',
+    label: '管理员',
     value: 'admin',
     icon: UserCheck,
   },
   {
-    label: 'Manager',
+    label: '经理',
     value: 'manager',
     icon: Users,
   },
   {
-    label: 'Cashier',
+    label: '收银员',
     value: 'cashier',
     icon: CreditCard,
   },

@@ -22,9 +22,9 @@ const appearanceFormSchema = z.object({
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
 
 const themes = [
-  { value: 'light', label: 'Light' },
-  { value: 'dark', label: 'Dark' },
-  { value: 'system', label: 'System' },
+  { value: 'light', label: '浅色' },
+  { value: 'dark', label: '深色' },
+  { value: 'system', label: '跟随系统' },
 ] as const
 
 export function AppearanceForm() {
@@ -47,9 +47,9 @@ export function AppearanceForm() {
           name='theme'
           render={({ field }) => (
             <FormItem className='space-y-3'>
-              <FormLabel>Theme</FormLabel>
+              <FormLabel>主题</FormLabel>
               <FormDescription>
-                Choose a theme or follow your system appearance.
+                选择浅色、深色主题，或跟随系统设置。
               </FormDescription>
               <FormControl>
                 <RadioGroup
@@ -71,7 +71,7 @@ export function AppearanceForm() {
             </FormItem>
           )}
         />
-        <Button type='submit'>Update preferences</Button>
+        <Button type='submit'>保存偏好设置</Button>
       </form>
     </Form>
   )

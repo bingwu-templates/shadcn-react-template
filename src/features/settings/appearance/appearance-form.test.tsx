@@ -26,9 +26,9 @@ describe('Appearance preferences', () => {
     )
 
     await expect
-      .element(screen.getByRole('radio', { name: 'System', exact: true }))
+      .element(screen.getByRole('radio', { name: '跟随系统', exact: true }))
       .toBeChecked()
-    await screen.getByRole('button', { name: 'Update preferences' }).click()
+    await screen.getByRole('button', { name: '保存偏好设置' }).click()
 
     await expect
       .poll(() => vi.mocked(showSubmittedData).mock.calls)
@@ -44,16 +44,16 @@ describe('Appearance preferences', () => {
       </ThemeProvider>
     )
 
-    await screen.getByRole('radio', { name: 'Dark', exact: true }).click()
-    await screen.getByRole('button', { name: 'Update preferences' }).click()
+    await screen.getByRole('radio', { name: '深色', exact: true }).click()
+    await screen.getByRole('button', { name: '保存偏好设置' }).click()
     await expect.poll(() => getCookie('vite-ui-theme')).toBe('dark')
     expect(document.documentElement.classList.contains('dark')).toBe(true)
 
-    await screen.getByRole('button', { name: 'Toggle theme' }).click()
-    await page.getByRole('menuitem', { name: 'Light', exact: true }).click()
+    await screen.getByRole('button', { name: '切换主题' }).click()
+    await page.getByRole('menuitem', { name: '浅色', exact: true }).click()
 
     await expect
-      .element(screen.getByRole('radio', { name: 'Light', exact: true }))
+      .element(screen.getByRole('radio', { name: '浅色', exact: true }))
       .toBeChecked()
     expect(getCookie('vite-ui-theme')).toBe('light')
     expect(document.documentElement.classList.contains('light')).toBe(true)

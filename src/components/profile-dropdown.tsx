@@ -35,10 +35,10 @@ export function ProfileDropdown({ sidebar = false }: { sidebar?: boolean }) {
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           {sidebar ? (
-            <SidebarMenuButton size='lg' aria-label='Open account menu'>
+            <SidebarMenuButton size='lg' aria-label='打开账户菜单'>
               {avatar}
               <div className='grid flex-1 text-start text-sm leading-tight'>
-                <span className='truncate font-semibold'>Current user</span>
+                <span className='truncate font-semibold'>当前用户</span>
                 <span className='truncate text-xs'>{email}</span>
               </div>
               <ChevronsUpDown className='ms-auto size-4' />
@@ -48,7 +48,7 @@ export function ProfileDropdown({ sidebar = false }: { sidebar?: boolean }) {
               variant='ghost'
               size='icon'
               className='size-8 rounded-full'
-              aria-label='Open account menu'
+              aria-label='打开账户菜单'
             >
               {avatar}
             </Button>
@@ -61,7 +61,7 @@ export function ProfileDropdown({ sidebar = false }: { sidebar?: boolean }) {
         >
           <DropdownMenuLabel className='font-normal'>
             <div className='flex flex-col gap-1.5'>
-              <p className='text-sm leading-none font-medium'>Current user</p>
+              <p className='text-sm leading-none font-medium'>当前用户</p>
               <p className='truncate text-xs leading-none text-muted-foreground'>
                 {email}
               </p>
@@ -70,18 +70,18 @@ export function ProfileDropdown({ sidebar = false }: { sidebar?: boolean }) {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild>
-              <Link to='/settings'>Profile</Link>
+              <Link to='/settings'>个人资料</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to='/settings/account'>Account</Link>
+              <Link to='/settings/account'>账户</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to='/settings/notifications'>Notifications</Link>
+              <Link to='/settings/notifications'>通知</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant='destructive' onClick={() => setOpen(true)}>
-            <LogOut /> Sign out
+            <LogOut /> 退出登录
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

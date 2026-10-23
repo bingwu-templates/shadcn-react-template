@@ -7,6 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ConfirmDialog } from '@/components/confirm-dialog'
+import { roles } from '../data/data'
 import { type User } from '../data/schema'
 
 type UserDeleteDialogProps = {
@@ -26,7 +27,7 @@ export function UsersDeleteDialog({
     if (value.trim() !== currentRow.username) return
 
     onOpenChange(false)
-    showSubmittedData(currentRow, 'The following user has been deleted:')
+    showSubmittedData(currentRow, '已删除以下用户：')
   }
 
   return (
@@ -41,7 +42,7 @@ export function UsersDeleteDialog({
             className='me-1 inline-block stroke-destructive'
             size={18}
           />{' '}
-          Delete User
+          删除用户
         </span>
       }
       desc={
@@ -54,35 +55,33 @@ export function UsersDeleteDialog({
           className='space-y-4'
         >
           <p className='mb-2'>
-            Are you sure you want to delete{' '}
-            <span className='font-bold'>{currentRow.username}</span>?
+            确定要删除用户{' '}
+            <span className='font-bold'>{currentRow.username}</span>？
             <br />
-            This action will permanently remove the user with the role of{' '}
+            此操作将永久删除角色为{' '}
             <span className='font-bold'>
-              {currentRow.role.toUpperCase()}
+              {roles.find((role) => role.value === currentRow.role)?.label}
             </span>{' '}
-            from the system. This cannot be undone.
+            的用户，且无法撤销。
           </p>
 
           <Label className='my-2'>
-            Username:
+            用户名：
             <Input
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder='Enter username to confirm deletion.'
+              placeholder='请输入用户名以确认删除'
               autoFocus
             />
           </Label>
 
           <Alert variant='destructive'>
-            <AlertTitle>Warning!</AlertTitle>
-            <AlertDescription>
-              Please be careful, this operation can not be rolled back.
-            </AlertDescription>
+            <AlertTitle>警告</AlertTitle>
+            <AlertDescription>请谨慎操作，删除后无法恢复。</AlertDescription>
           </Alert>
         </form>
       }
-      confirmText='Delete'
+      confirmText='删除'
       destructive
     />
   )

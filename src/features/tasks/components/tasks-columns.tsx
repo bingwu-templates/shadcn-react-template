@@ -16,7 +16,7 @@ export const tasksColumns: ColumnDef<Task>[] = [
           (table.getIsSomePageRowsSelected() && 'indeterminate')
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label='Select all'
+        aria-label='全选'
         className='translate-y-0.5'
       />
     ),
@@ -24,7 +24,7 @@ export const tasksColumns: ColumnDef<Task>[] = [
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label='Select row'
+        aria-label='选择此行'
         className='translate-y-0.5'
       />
     ),
@@ -34,7 +34,7 @@ export const tasksColumns: ColumnDef<Task>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Task' />
+      <DataTableColumnHeader column={column} title='任务' />
     ),
     cell: ({ row }) => <div className='w-20'>{row.getValue('id')}</div>,
     enableSorting: false,
@@ -43,9 +43,10 @@ export const tasksColumns: ColumnDef<Task>[] = [
   {
     accessorKey: 'title',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Title' />
+      <DataTableColumnHeader column={column} title='标题' />
     ),
     meta: {
+      label: '标题',
       className: 'ps-1 max-w-0 w-2/3',
       tdClassName: 'ps-4',
     },
@@ -63,9 +64,9 @@ export const tasksColumns: ColumnDef<Task>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Status' />
+      <DataTableColumnHeader column={column} title='状态' />
     ),
-    meta: { className: 'ps-1', tdClassName: 'ps-4' },
+    meta: { label: '状态', className: 'ps-1', tdClassName: 'ps-4' },
     cell: ({ row }) => {
       const status = statuses.find(
         (status) => status.value === row.getValue('status')
@@ -91,9 +92,9 @@ export const tasksColumns: ColumnDef<Task>[] = [
   {
     accessorKey: 'priority',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Priority' />
+      <DataTableColumnHeader column={column} title='优先级' />
     ),
-    meta: { className: 'ps-1', tdClassName: 'ps-3' },
+    meta: { label: '优先级', className: 'ps-1', tdClassName: 'ps-3' },
     cell: ({ row }) => {
       const priority = priorities.find(
         (priority) => priority.value === row.getValue('priority')

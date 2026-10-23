@@ -16,7 +16,7 @@ export function AppTitle() {
         <SidebarMenuButton size='lg' asChild>
           <Link to='/' onClick={() => setOpenMobile(false)}>
             <Logo alt='' aria-hidden='true' />
-            <span className='truncate font-semibold'>Admin Workspace</span>
+            <span className='truncate font-semibold'>管理工作台</span>
           </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>

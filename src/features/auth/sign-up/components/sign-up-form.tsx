@@ -21,16 +21,16 @@ const formSchema = z
   .object({
     email: z.email({
       error: (iss) =>
-        iss.input === '' ? 'Please enter your email.' : undefined,
+        iss.input === '' ? '请输入邮箱。' : '请输入有效的邮箱地址。',
     }),
     password: z
       .string()
-      .min(1, 'Please enter your password.')
-      .min(7, 'Password must be at least 7 characters long.'),
-    confirmPassword: z.string().min(1, 'Please confirm your password.'),
+      .min(1, '请输入密码。')
+      .min(7, '密码至少需要 7 个字符。'),
+    confirmPassword: z.string().min(1, '请再次输入密码。'),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match.",
+    message: '两次输入的密码不一致。',
     path: ['confirmPassword'],
   })
 
@@ -53,12 +53,12 @@ export function SignUpForm({
     setIsLoading(true)
 
     toast.promise(sleep(2000), {
-      loading: 'Creating account...',
+      loading: '正在创建账户…',
       success: () => {
         setIsLoading(false)
-        return `Account created for ${data.email}.`
+        return `已为 ${data.email} 创建账户。`
       },
-      error: 'Error',
+      error: '操作失败',
     })
   }
 
@@ -74,7 +74,7 @@ export function SignUpForm({
           name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>邮箱</FormLabel>
               <FormControl>
                 <Input placeholder='name@example.com' {...field} />
               </FormControl>
@@ -87,7 +87,7 @@ export function SignUpForm({
           name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>密码</FormLabel>
               <FormControl>
                 <PasswordInput placeholder='********' {...field} />
               </FormControl>
@@ -100,7 +100,7 @@ export function SignUpForm({
           name='confirmPassword'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>确认密码</FormLabel>
               <FormControl>
                 <PasswordInput placeholder='********' {...field} />
               </FormControl>
@@ -110,7 +110,7 @@ export function SignUpForm({
         />
         <Button className='mt-2' disabled={isLoading}>
           {isLoading ? <Loader2 className='animate-spin' /> : <UserPlus />}
-          Create Account
+          创建账户
         </Button>
       </form>
     </Form>

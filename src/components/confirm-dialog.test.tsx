@@ -11,7 +11,7 @@ describe('ConfirmDialog', () => {
         open
         onOpenChange={vi.fn()}
         title='Delete item'
-        desc='This action cannot be undone.'
+        desc='此操作无法撤销。'
         handleConfirm={vi.fn()}
       />
     )
@@ -19,14 +19,12 @@ describe('ConfirmDialog', () => {
     await expect
       .element(getByRole('heading', { name: 'Delete item' }))
       .toBeInTheDocument()
+    await expect.element(getByText('此操作无法撤销。')).toBeInTheDocument()
     await expect
-      .element(getByText('This action cannot be undone.'))
+      .element(getByRole('button', { name: '取消' }))
       .toBeInTheDocument()
     await expect
-      .element(getByRole('button', { name: 'Cancel' }))
-      .toBeInTheDocument()
-    await expect
-      .element(getByRole('button', { name: 'Continue' }))
+      .element(getByRole('button', { name: '继续' }))
       .toBeInTheDocument()
   })
 
@@ -36,14 +34,14 @@ describe('ConfirmDialog', () => {
       <ConfirmDialog
         open
         onOpenChange={vi.fn()}
-        title='Sign out'
+        title='退出登录'
         desc='Are you sure?'
-        confirmText='Sign out'
+        confirmText='退出登录'
         handleConfirm={handleConfirm}
       />
     )
 
-    await userEvent.click(getByRole('button', { name: 'Sign out' }))
+    await userEvent.click(getByRole('button', { name: '退出登录' }))
     expect(handleConfirm).toHaveBeenCalledOnce()
   })
 
@@ -60,7 +58,7 @@ describe('ConfirmDialog', () => {
       />
     )
 
-    const confirm = getByRole('button', { name: 'Continue' })
+    const confirm = getByRole('button', { name: '继续' })
     await expect.element(confirm).toBeDisabled()
     expect(handleConfirm).not.toHaveBeenCalled()
   })
@@ -78,10 +76,8 @@ describe('ConfirmDialog', () => {
       />
     )
 
-    await expect.element(getByRole('button', { name: 'Cancel' })).toBeDisabled()
-    await expect
-      .element(getByRole('button', { name: 'Continue' }))
-      .toBeDisabled()
+    await expect.element(getByRole('button', { name: '取消' })).toBeDisabled()
+    await expect.element(getByRole('button', { name: '继续' })).toBeDisabled()
   })
 
   it('supports custom button texts', async () => {
@@ -89,7 +85,7 @@ describe('ConfirmDialog', () => {
       <ConfirmDialog
         open
         onOpenChange={vi.fn()}
-        title='Delete'
+        title='删除'
         desc='...'
         cancelBtnText='No'
         confirmText='Yes'
@@ -117,12 +113,12 @@ describe('ConfirmDialog', () => {
             <p>Type DELETE to confirm.</p>
           </form>
         }
-        confirmText='Delete'
+        confirmText='删除'
         destructive
       />
     )
 
-    const deleteBtn = getByRole('button', { name: 'Delete' })
+    const deleteBtn = getByRole('button', { name: '删除' })
     await expect.element(deleteBtn).toHaveAttribute('type', 'submit')
     await expect
       .element(deleteBtn)
@@ -138,7 +134,7 @@ describe('ConfirmDialog', () => {
       <ConfirmDialog
         open
         onOpenChange={vi.fn()}
-        title='Delete'
+        title='删除'
         form='users-delete-form'
         desc={
           <form
@@ -149,12 +145,12 @@ describe('ConfirmDialog', () => {
             <p>Confirm deletion.</p>
           </form>
         }
-        confirmText='Delete'
+        confirmText='删除'
         destructive
       />
     )
 
-    await userEvent.click(getByRole('button', { name: 'Delete' }))
+    await userEvent.click(getByRole('button', { name: '删除' }))
 
     expect(handleFormSubmit).toHaveBeenCalledOnce()
   })
@@ -168,7 +164,7 @@ describe('ConfirmDialog', () => {
       <ConfirmDialog
         open
         onOpenChange={vi.fn()}
-        title='Delete'
+        title='删除'
         form='users-delete-form'
         desc={
           <form
@@ -179,7 +175,7 @@ describe('ConfirmDialog', () => {
             <input type='text' name='username' placeholder='username' />
           </form>
         }
-        confirmText='Delete'
+        confirmText='删除'
         destructive
       />
     )
@@ -198,7 +194,7 @@ describe('ConfirmDialog', () => {
       <ConfirmDialog
         open
         onOpenChange={vi.fn()}
-        title='Delete'
+        title='删除'
         form='users-delete-form'
         disabled
         desc={
@@ -206,12 +202,12 @@ describe('ConfirmDialog', () => {
             <p>Enter username to enable Delete.</p>
           </form>
         }
-        confirmText='Delete'
+        confirmText='删除'
         destructive
       />
     )
 
-    const deleteBtn = getByRole('button', { name: 'Delete' })
+    const deleteBtn = getByRole('button', { name: '删除' })
     await expect.element(deleteBtn).toBeDisabled()
     expect(handleFormSubmit).not.toHaveBeenCalled()
   })

@@ -49,21 +49,17 @@ export function TasksDialogs() {
               setTimeout(() => {
                 setCurrentRow(null)
               }, 500)
-              showSubmittedData(
-                currentRow,
-                'The following task has been deleted:'
-              )
+              showSubmittedData(currentRow, '已删除以下任务：')
             }}
             className='max-w-md'
-            title={`Delete this task: ${currentRow.id} ?`}
+            title={`确定删除任务 ${currentRow.id}？`}
             desc={
               <>
-                You are about to delete a task with the ID{' '}
-                <strong>{currentRow.id}</strong>. <br />
-                This action cannot be undone.
+                即将删除任务，编号为 <strong>{currentRow.id}</strong>。<br />
+                此操作无法撤销。
               </>
             }
-            confirmText='Delete'
+            confirmText='删除'
           />
         </>
       )}

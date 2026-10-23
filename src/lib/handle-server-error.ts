@@ -7,7 +7,7 @@ export function handleServerError(error: unknown) {
     console.log(error)
   }
 
-  let errMsg = 'Something went wrong!'
+  let errMsg = '操作失败，请稍后重试。'
 
   if (
     error &&
@@ -15,7 +15,7 @@ export function handleServerError(error: unknown) {
     'status' in error &&
     Number(error.status) === 204
   ) {
-    errMsg = 'No content.'
+    errMsg = '暂无内容。'
   }
 
   if (

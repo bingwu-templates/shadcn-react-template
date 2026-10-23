@@ -3,10 +3,7 @@ import { AccountForm } from './account-form'
 
 export function SettingsAccount() {
   return (
-    <ContentSection
-      title='Account'
-      desc='Update your account details and preferred language.'
-    >
+    <ContentSection title='账户' desc='更新账户信息并查看界面语言。'>
       <AccountForm />
     </ContentSection>
   )

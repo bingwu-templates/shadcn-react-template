@@ -4,7 +4,7 @@ import logoUrl from './logo.png'
 
 export function Logo({
   className,
-  alt = 'Admin Workspace',
+  alt = '管理工作台',
   ...props
 }: Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'>) {
   return (

@@ -40,7 +40,7 @@ const queryClient = new QueryClient({
 
         if (error instanceof HTTPError) {
           if (error.response.status === 304) {
-            toast.error('Content not modified!')
+            toast.error('内容未发生变化。')
           }
         }
       },
@@ -50,13 +50,13 @@ const queryClient = new QueryClient({
     onError: (error) => {
       if (error instanceof HTTPError) {
         if (error.response.status === 401) {
-          toast.error('Session expired!')
+          toast.error('登录已过期，请重新登录。')
           useAuthStore.getState().auth.reset()
           const redirect = `${router.history.location.href}`
           router.navigate({ to: '/sign-in', search: { redirect } })
         }
         if (error.response.status === 500) {
-          toast.error('Internal Server Error!')
+          toast.error('服务器内部错误，请稍后重试。')
           // Only navigate to error page in production to avoid disrupting HMR in development
           if (import.meta.env.PROD) {
             router.navigate({ to: '/500' })

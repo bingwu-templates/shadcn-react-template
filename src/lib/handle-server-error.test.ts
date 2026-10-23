@@ -28,13 +28,13 @@ describe('handleServerError', () => {
   it('shows a generic message when the error is not recognised', () => {
     handleServerError(new Error('network'))
 
-    expect(toastError).toHaveBeenCalledWith('Something went wrong!')
+    expect(toastError).toHaveBeenCalledWith('操作失败，请稍后重试。')
   })
 
   it('maps a plain object with status 204 to the no-content message', () => {
     handleServerError({ status: 204 })
 
-    expect(toastError).toHaveBeenCalledWith('No content.')
+    expect(toastError).toHaveBeenCalledWith('暂无内容。')
   })
 
   it('prefers the API title parsed by ky from an HTTP error response', async () => {
@@ -54,7 +54,7 @@ describe('handleServerError', () => {
 
       handleServerError(error)
 
-      expect(toastError).toHaveBeenCalledWith('Something went wrong!')
+      expect(toastError).toHaveBeenCalledWith('操作失败，请稍后重试。')
     }
   )
 
@@ -72,7 +72,7 @@ describe('handleServerError', () => {
 
       handleServerError(error)
 
-      expect(toastError).toHaveBeenCalledWith('Something went wrong!')
+      expect(toastError).toHaveBeenCalledWith('操作失败，请稍后重试。')
     }
   )
 
