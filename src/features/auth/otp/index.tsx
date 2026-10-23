@@ -19,14 +19,14 @@ export function Otp() {
             双重身份验证
           </CardTitle>
           <CardDescription>
-            请输入验证码。 <br /> 验证码已发送至你的邮箱。
+            请输入验证码。 验证码已发送至你的邮箱。
           </CardDescription>
         </CardHeader>
         <CardContent>
           <OtpForm />
         </CardContent>
         <CardFooter>
-          <p className='px-8 text-center text-sm text-muted-foreground'>
+          <p className='text-center text-sm text-muted-foreground'>
             未收到验证码？{' '}
             <Link
               to='/sign-in'

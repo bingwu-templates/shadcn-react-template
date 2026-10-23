@@ -17,7 +17,7 @@ export function ForgotPassword() {
         <CardHeader>
           <CardTitle className='text-lg tracking-tight'>找回密码</CardTitle>
           <CardDescription>
-            请输入注册邮箱， <br /> 我们将发送密码重置链接。
+            请输入注册邮箱，我们将发送密码重置链接。
           </CardDescription>
         </CardHeader>
         <CardContent>

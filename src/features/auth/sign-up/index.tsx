@@ -17,8 +17,7 @@ export function SignUp() {
         <CardHeader>
           <CardTitle className='text-lg tracking-tight'>创建账户</CardTitle>
           <CardDescription>
-            请输入邮箱和密码以创建账户。 <br />
-            已有账户？{' '}
+            请输入邮箱和密码以创建账户。 已有账户？{' '}
             <Link
               to='/sign-in'
               className='text-nowrap underline underline-offset-4 hover:text-primary'
