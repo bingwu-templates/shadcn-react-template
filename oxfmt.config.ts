@@ -26,7 +26,7 @@ const priorityImports = [
   'react/**',
   'globals',
   'zod',
-  'axios',
+  'ky',
   'date-fns',
   'react-hook-form',
   'use-intl',

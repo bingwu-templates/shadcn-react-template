@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios'
+import { HTTPError } from 'ky'
 import { toast } from 'sonner'
 
 export function handleServerError(error: unknown) {
@@ -18,8 +18,13 @@ export function handleServerError(error: unknown) {
     errMsg = 'No content.'
   }
 
-  if (error instanceof AxiosError) {
-    const title = error.response?.data?.title
+  if (
+    error instanceof HTTPError &&
+    error.data &&
+    typeof error.data === 'object' &&
+    'title' in error.data
+  ) {
+    const { title } = error.data
     if (typeof title === 'string' && title.length > 0) {
       errMsg = title
     }
