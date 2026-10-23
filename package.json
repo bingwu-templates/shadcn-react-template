@@ -3,13 +3,19 @@
   "private": true,
   "version": "2.2.1",
   "type": "module",
+  "engines": {
+    "node": ">=22.22.1"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "lint:staged": "lint-staged",
     "preview": "vite preview",
-    "format:check": "prettier --check .",
-    "format": "prettier --write .",
+    "format:check": "oxfmt --check .",
+    "format": "oxfmt --write .",
+    "prepare": "simple-git-hooks",
     "knip": "knip",
     "test": "vitest run --browser.headless",
     "test:watch": "vitest --browser.headless",
@@ -17,6 +23,9 @@
     "test:browser": "vitest",
     "test:coverage": "vitest run --coverage --browser.headless",
     "test:browser:install": "playwright install chromium --with-deps"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint:staged"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -62,13 +71,11 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@faker-js/faker": "^10.4.0",
     "@tanstack/eslint-plugin-query": "^5.99.0",
     "@tanstack/react-query-devtools": "^5.99.0",
     "@tanstack/react-router-devtools": "^1.166.13",
     "@tanstack/router-plugin": "^1.167.22",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -76,16 +83,14 @@
     "@vitest/browser-playwright": "^4.1.4",
     "@vitest/coverage-v8": "^4.1.4",
     "@vitest/ui": "^4.1.4",
-    "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.5.0",
     "knip": "^6.4.1",
+    "lint-staged": "^17.6.0",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "playwright": "1.59.1",
-    "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "simple-git-hooks": "^2.14.0",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.58.2",
     "vite": "^8.0.8",
     "vitest": "^4.1.4",
     "vitest-browser-react": "^2.2.0"
