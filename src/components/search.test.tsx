@@ -36,6 +36,11 @@ async function renderSearch() {
     }),
     createRoute({
       getParentRoute: () => rootRoute,
+      path: '/apps',
+      component: () => <h1>应用集成页面</h1>,
+    }),
+    createRoute({
+      getParentRoute: () => rootRoute,
       path: '/settings/account',
       component: () => <h1>账户页面</h1>,
     }),
@@ -109,6 +114,19 @@ describe('Menu search', () => {
     await expect
       .element(page.getByRole('button', { name: '搜索菜单' }))
       .toHaveFocus()
+  })
+
+  it('finds the restored apps page from the Chinese menu search', async () => {
+    const router = await renderSearch()
+    await openSearch()
+    await page.getByRole('combobox').fill('应用集成')
+    await page.getByRole('option', { name: '应用集成', exact: true }).click()
+
+    await expect.poll(() => router.state.location.pathname).toBe('/apps')
+    await expect
+      .element(page.getByRole('heading', { name: '应用集成页面' }))
+      .toBeVisible()
+    await expect.element(page.getByRole('dialog')).not.toBeInTheDocument()
   })
 
   it.each(['账户', '/settings/account'])(
